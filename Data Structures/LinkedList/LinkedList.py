@@ -18,13 +18,14 @@ class LinkedList:
             currNode.next = newNode
     # DummyNode -> B -> C | Add A
     def insertionAtHead(self, data):
-        newNode = Node(data)
-        # dummyNode = self.head
-        # newNode.next = dummyNode
-        # self.head = newNode
-        prevNode = self.head # B -> C
-        self.head = newNode
-        self.head.next = prevNode
+        # b -> c
+        new_Node = Node(data)
+        if self.head is None:
+            self.head = new_Node
+            return
+        else:
+            new_Node.next = self.head
+            self.head = new_Node
 
     def remove(self, target):
         if self.head is None:
