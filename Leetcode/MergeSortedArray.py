@@ -30,10 +30,13 @@ Understand:
     - Returning nums1 after modification.
     - Assume that there might be duplicates within the list.
     - m and n are the element that we are merging.
+    - Ouput nums1 will have a size of m + n.
+    - Since nums1 will have a size of (m + n), meaning that there is only element of nums1 that we need to modify.
 
 Plan:
     - Two pointer method, comparing each element at the same time.
-    - Insert an element after comparsion.
+    - Start from the end of m and n [the real value we are comparing] moving forward.
+    - Have a pointer from the very end of the list nums1. To store the larger element.
 
 Implement:
     - 
@@ -59,21 +62,32 @@ Implement:
 
 
 def merge(nums1: list[int], m: int, nums2: list[int], n: int) -> None:
-    endPointer = (m + n) - 1
-    pointer1 = m - 1
-    pointer2 = n - 1
+
+    endPointer = (m + n) - 1 # Or simply len(nums1) - 1
+    pointer1 = m - 1 # Pointed to the actual last element we're comparing in nums1
+    pointer2 = n - 1 # Pointed to the actual last element we're comparing in nums2
 
     while pointer1 >= 0 and pointer2 >= 0:
 
-        if nums1[pointer1] > nums2[pointer2]:
+        if nums1[pointer1] > nums2[pointer2]: # If the current value in nums1 is bigger than the current value in nums2
             nums1[endPointer] = nums1[pointer1]
             pointer1 -= 1
-        else:
+        else: # Else that the nums1[pointer1] < nums2[pointer2].
+            # If we found a larger element, then we stored them in the end.
             nums1[endPointer] = nums2[pointer2]
             pointer2 -= 1
         endPointer -= 1
     
+
+    '''
+    nums1: [1, 2, 3, 0, 0, 6]  # pointer2 = 2 -> 1
+    nums1: [1, 2, 3, 0, 5, 6]  # pointer2 = 1 -> 0
+    nums1: [1, 2, 3, 3, 5, 6]  # pointer1 = 2 -> 1
+    nums1: [1, 2, 2, 3, 5, 6]  # pointer2 = 0 -> -1
+    
+    '''
     while pointer2 >= 0:
+        # If there is any left over element in nums2
         nums1[endPointer] = nums2[pointer2]
         pointer2 -= 1
         endPointer -= 1
