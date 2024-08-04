@@ -7,20 +7,10 @@ class TreeNode:
         self.left = left
 
 
-# node1 = TreeNode(1)
-# node2 = TreeNode(3)
-# node3 = TreeNode(1)
-# node4 = TreeNode(6)
-
-# node1.left = node2
-# node2.left = node3
-# node3.left = node4
-
 def check_tree(root):
     # Time Complexity -> O(1)
     return root.left.val + root.right.val == root.val
 
-# print(check_tree(node1))
 
 def left_most(root):
 
@@ -35,7 +25,6 @@ def left_most(root):
     #     currNode = currNode.left
     # return currNode.val
 
-# print(left_most(node1))
 
 '''
             1
@@ -46,7 +35,13 @@ def left_most(root):
        /
       6
 '''
-
+def right_most(root):
+    if not root:
+        return None
+    
+    while root.right is not None:
+        root = root.right
+    return root.val
 
 
 # def inorder_traversal(root):
@@ -67,28 +62,7 @@ def inorder_traversal(root):
     return inorder_traversal(root.left) + [root.val] + inorder_traversal(root.right)
 
 
-# node1 = TreeNode(10)
-# node2 = TreeNode(3)
-# node3 = TreeNode(2)
-# node4 = TreeNode(4)
 
-# node5 = TreeNode(16)
-# node6 = TreeNode(15)
-# node7 = TreeNode(23)
-
-
-
-# node1.left = node2
-# node1.right = node5
-
-# node2.left = node3
-# node2.right = node4
-
-# node5.left = node6
-# node5.right = node7
-
-
-# print(inorder_traversal(node1))
 
 def size(root, nodes = []):
     if root is not None:
@@ -97,7 +71,6 @@ def size(root, nodes = []):
         size(root = root.right, nodes = nodes)
     return len(nodes)
 
-# print(size(node1))
 
 def find(root, value):
     if root is None:
@@ -106,7 +79,6 @@ def find(root, value):
         return True
     return find(root.left, value) or find(root.right, value)
 
-# print(find(node1, 10))
 
 def descending_leaves(root):
     def helper(root, res):
@@ -122,7 +94,17 @@ def descending_leaves(root):
     return result
 
 
-def add(root, data):
+def height(root):
+    count = 0
+    if root is None:
+        return 0
+    
+    leftHeight = height(root.left)
+    rightHeight = height(root.right)
+
+    return max(leftHeight, rightHeight) + 1
+
+def insert(root, data):
 
     if not root: # If the tree is empty, meaning no root
         # newNode = TreeNode(data)
@@ -135,23 +117,83 @@ def add(root, data):
             newNode = TreeNode(data)
             root.right = newNode
         else:
-            add(root.right, data)
+            insert(root.right, data)
     else:
         # If the data is less than current root.val, go to the left
         if root.left is None:
             newNode = TreeNode(data)
             root.left = newNode
         else:
-            add(root.left, data)
+            insert(root.left, data)
     return root
 
-node1 = add(None, 10)
-node2 = add(root = node1, data = 5)
-node3 = add(root = node1, data = 20)
-node4 = add(root = node1, data = 64)
-node5 = add(root = node1, data = 24)
+
+
+def remove_bst(root, target):
+    if not root:  # If the tree is empty
+        return root
+    
+    if target > root.val:  # Searching in the right subtree
+        root.right = remove_bst(root.right, target)
+    elif target < root.val:  # Searching in the left subtree
+        root.left = remove_bst(root.left, target)
+    else:  # We found the node to delete
+        
+        # Case 1: Node with no children (leaf node)
+        if not root.left and not root.right:
+            return None
+        
+        # Case 2: Node with only one child
+        if not root.left:
+            return root.right
+        elif not root.right:
+            return root.left
+        
+        # Case 3: Node with two children
+        # Find the in-order successor (smallest value in the right subtree)
+        nodePointer = root.right
+        while nodePointer.left:
+            nodePointer = nodePointer.left
+        root.val = nodePointer.val
+        root.right = remove_bst(root.right, nodePointer.val)
+    
+    return root
+
+
+
+def is_univalued(root):
+    '''
+    A binary Tree is uni-valued if every node in the tree has the same value.
+    Given the root of a binary tree, return True if the given tree is uni-valued and False otherwise.
+
+    '''
+    childs = inorder_traversal(root)
+    
+    for first in range(len(childs)):
+        for second in range(first + 1, len(childs)):
+            if childs[first] != childs[second]:
+                return False
+    return True
+
+
+node1 = TreeNode(5)
+# node2 = TreeNode(3)
+# node3 = TreeNode(6)
+# node4 = TreeNode(2)
+# node5 = TreeNode(4)
+# node6 = TreeNode(7)
+
+insert(node1, 3)
+insert(node1, 6)
+insert(node1, 2)
+insert(node1, 4)
+insert(node1, 7)
+
 print(inorder_traversal(node1))
-# print(node1.val)
-# print(node1.left.val)
-# print(node1.right.val)
+remove_bst(root = node1, target = 4)
+remove_bst(root = node1, target = node1.val)
+print(inorder_traversal(node1))
+
+
+# print(is_univalued(node1))
 
