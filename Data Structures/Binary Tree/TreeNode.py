@@ -61,7 +61,27 @@ def inorder_traversal(root):
         return []
     return inorder_traversal(root.left) + [root.val] + inorder_traversal(root.right)
 
+def preorder_traversal(root, result = []):
+    '''
+    At first visit the root then traverse left subtree and then traverse the right subtree.
+    '''
+    if not root:
+        return []
+    result.append(root.val)
+    preorder_traversal(root= root.left, result = result)
+    preorder_traversal(root.right, result)
+    return result
 
+def postorder_traversal(root, res = []):
+    '''
+    At first traverse left subtree then traverse the right subtree and then visit the root.
+    '''
+    if not root:
+        return []
+    postorder_traversal(root.left, res)
+    postorder_traversal(root.right, res)
+    res.append(root.val)
+    return res
 
 
 def size(root, nodes = []):
@@ -138,7 +158,7 @@ def remove_bst(root, target):
     elif target < root.val:  # Searching in the left subtree
         root.left = remove_bst(root.left, target)
     else:  # We found the node to delete
-        
+
         # Case 1: Node with no children (leaf node)
         if not root.left and not root.right:
             return None
@@ -176,24 +196,37 @@ def is_univalued(root):
     return True
 
 
-node1 = TreeNode(5)
-# node2 = TreeNode(3)
-# node3 = TreeNode(6)
-# node4 = TreeNode(2)
-# node5 = TreeNode(4)
-# node6 = TreeNode(7)
+root = TreeNode(100)
+node1 = TreeNode(20)
+node2 = TreeNode(10)
+node3 = TreeNode(30)
+node4 = TreeNode(200)
+node5 = TreeNode(150)
+node6 = TreeNode(300)
 
-insert(node1, 3)
-insert(node1, 6)
-insert(node1, 2)
-insert(node1, 4)
-insert(node1, 7)
+root.left = node1
+root.right = node4
 
-print(inorder_traversal(node1))
-remove_bst(root = node1, target = 4)
-remove_bst(root = node1, target = node1.val)
-print(inorder_traversal(node1))
+node1.left = node2
+node1.right = node3
+
+node4.left = node5
+node4.right = node6
+
+print(f"Preorder Traversal -> {preorder_traversal(root)}")
+print(f"Inorder Traversal -> {inorder_traversal(root)}")
+print(f"Postorder Traversal -> {postorder_traversal(root)}")
+
+# insert(node1, 3)
+# insert(node1, 6)
+# insert(node1, 2)
+# insert(node1, 4)
+# insert(node1, 7)
+
+# print(inorder_traversal(node1))
+# remove_bst(root = node1, target = 4)
+# remove_bst(root = node1, target = node1.val)
+# print(inorder_traversal(node1))
 
 
 # print(is_univalued(node1))
-
