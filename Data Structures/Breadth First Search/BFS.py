@@ -57,25 +57,6 @@ def breadth_first_search(root):
     return visited
 
 
-
-def BFS(root):
-    if not root:
-        return
-    
-    queue = deque()
-    queue.append(root)
-
-    while queue:
-        currentNode = queue.popleft()  # More efficient than pop(0)
-        print(currentNode.val)
-
-        if currentNode.left:
-            queue.append(currentNode.left)
-
-        if currentNode.right:
-            queue.append(currentNode.right)
-    
-
 # Example tree:
 #        1
 #       / \
