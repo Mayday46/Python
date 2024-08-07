@@ -12,6 +12,26 @@ Example 2:
     - Input: root = [1, 2, 2, null, 3, null, 3]
     - Ouput: false
 
+UPI
+
+  Understand:
+    - No need to check if the very top root node is symmetric. 
+      - Symmetrical regardlesss the existence of the top root node.
+    - Case 1: If root.left or root.right is none
+      - If the root has no left and right, means that the tree is not Symmetrical due to un-even subtrees.
+    - Case 2: If root.left and root.right is none.
+      - Says that this node is alone.
+    - Case 3: if the root.left.val != root.right.val
+      - Symmetric requires nodes to have the same values.
+  
+  Plan:
+    - Recursion
+    - Check all three cases reursively
+    
+  
+  Implement:
+  
+  
 
 '''
 
