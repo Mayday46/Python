@@ -13,7 +13,22 @@ Example 2:
     -Input root = [5, 1, 7]
     - Output: [1, null, 5, null, 7]
 
+UPI
 
+  Understand:
+    - Depth first search algorithm is needed.
+    - Structure the tree to rightmost.
+    - Each tree node will contain right child.
+  
+  Plan:
+    - Find a way to traverse through the binary tree, and stored all the visited nodes.
+    - Rearrange the tree structure to rightmost structure using nodes from the visited nodes.
+    - Loops
+    - Define a traverse helper function.
+  
+  Implement:
+    -
+  
 '''
 class TreeNode:
     def __init__(self, val, left = None, right = None) -> None:
@@ -23,8 +38,8 @@ class TreeNode:
 
 class Solution:
     def increasingBST(self, root: TreeNode) -> TreeNode:
-        nodes = inorder(root)
-        size = len(nodes)
+        nodes = inorder(root) # Stored all the visited node into a list.
+        size = len(nodes) # Needs a way to tell when to stop.
         rootNode = TreeNode(nodes[0])
         current = rootNode
         for i in range(1, size):
