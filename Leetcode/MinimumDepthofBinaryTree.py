@@ -6,11 +6,16 @@ The minimum depth is the number of nodes along the shortest path from the root n
 
 Note: A leaf is a node with no left right children.
 
+Example 1:
+    - Input: root = [3, 9, 20, null, null, 15, 7]
+    - Output: 2
 
 '''
 
 
+from collections import deque
 from typing import Optional
+
 
 
 class TreeNode:
@@ -25,8 +30,7 @@ class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
         
         if not root:
-            return 0
-        
+            return 0    
         def dfsHelper(node, currentDepth = 1):
 
             if not node:
@@ -39,6 +43,26 @@ class Solution:
             right = dfsHelper(node.right, currentDepth + 1)
 
             return min(left, right)
-        
-        return dfsHelper(root)
+        #return dfsHelper(root)
+
+        def bfsHelper(root):
+            
+            queue = deque([root])
+            level = 1 
+
+            while queue:
+
+                for _ in range(len(queue)):
+
+                    current = queue.popleft()
+                    if not current.left and not current.right:
+                        return level
+                    if current.left:
+                        queue.append(current.left)
+                    if current.right:
+                        queue.append(current.right)
+
+                level = level + 1
+            return level
+        return bfsHelper(root)
 
