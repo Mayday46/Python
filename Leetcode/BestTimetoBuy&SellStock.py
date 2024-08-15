@@ -18,6 +18,13 @@ Exmaple 2:
     Input: prices = [7, 6, 4, 3, 1]
     Output: 0
     Explanation: In this case, no transactions are done and the max profit = 0.
+
+
+UIP
+
+Understand:
+    - Cannot travel back in time.
+    - Once you buy, you can only move forward.
 '''
 class Solution:
     def maxProfit(self, prices: list[int]) -> int:
