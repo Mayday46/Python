@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - 90s WeChat</title>
+    <link rel="stylesheet" href="loginstyles.css"> <!-- Link to the external CSS file -->
+</head>
+
+<body>
+    <div class = "desktop-background">
+
+        <div class = 'login-container' id = 'login-container'>
+
+            <div class = "window-header" id ="header">
+                <img src = "wechatIcon.png", alt = "Wechat Icon" class = "header-icon"/>
+                <span class = "window-title"> Wechat </span>
+                <div class = "window-controls">
+                    <button class = "minimize" onclick ="minimizeWindow()">_</button>
+                    <button class = "maximize" onlick = "maximizeWindow()">[]</button>
+                    <button class = "close" onclick="closeWindow()">X</button>
+                </div>
+            </div>
+
+            <input type="text" id="username" placeholder="Enter your username" required>
+            <input type="password" id="password" placeholder="Enter your password" required>
+            <input type="password" id="cpassword" placeholder="Confirm your password" required>
+            
+            <button onclike="signup()"> Sign up </button>
+        </div>
+    </div>
+
+
+    <div class = "footer">
+        <p> By: Winston Lin</p>
+        <p>Inspired by MSN Messenger (90s)</p>
+    </div>
+
+    <script>
+        function signup(){
+            
+        }
+    </script>
+</body>
+
+
+</html>

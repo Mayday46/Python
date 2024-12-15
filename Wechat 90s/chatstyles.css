@@ -1,0 +1,187 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #00A9E0; /* Retro QQ blue color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Main Chat Container */
+.chat-container {
+    display: flex;
+    width: 90%;
+    height: 80%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #006E99;
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-bar {
+    margin-bottom: 10px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+}
+
+.contact-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.contact-item:hover {
+    background-color: #004E6A;
+}
+
+.contact-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.contact-name {
+    font-size: 14px;
+    color: white;
+}
+
+/* Chat Window */
+.chat-window {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-left: 1px solid #ccc;
+}
+
+/* Chat Tabs */
+.chat-tabs {
+    display: flex;
+    background-color: #004E6A;
+    padding: 10px;
+    color: white;
+}
+
+.chat-tab {
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.chat-tab.active {
+    background-color: #003B53;
+}
+
+/* Chat Messages */
+.chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: scroll;
+    background-color: #F2F2F2;
+}
+
+.message {
+    margin-bottom: 10px;
+    max-width: 80%;
+}
+
+.message.user {
+    align-self: flex-end;
+    background-color: #003B53;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.message.bot {
+    align-self: flex-start;
+    background-color: #E6E6E6;
+    color: #003B53;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.message-text {
+    margin: 0;
+}
+
+/* Message Input Area */
+.message-input {
+    display: flex;
+    padding: 10px;
+    background-color: #E6E6E6;
+}
+
+.message-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #003B53;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.message-input button {
+    background-color: #003B53;
+    color: white;
+    font-size: 16px;
+    border: none;
+    padding: 10px 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.message-input button:hover {
+    background-color: #004C70;
+}
+
+/* Bottom Toolbar */
+.bottom-toolbar {
+    background-color: #003B53;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.bottom-toolbar button {
+    background-color: #006E99;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.bottom-toolbar button:hover {
+    background-color: #005F7F;
+}
