@@ -22,15 +22,18 @@ from spotipy.oauth2 import SpotifyOAuth
 SPOTIPY_CLIENT_ID = 'smt'
 SPOTIPY_CLIENT_SECRET = "smt"
 
+# Authenticate Spotify 
 sp = spotipy.Spotify(
     auth_manager = SpotifyOAuth(
         # Scope determines what can be viewed.
         scope = "playlist-modify-private",
         # scope = "user-top-read",
+        # The URI Spotify uses after authenticating the user.
         redirect_uri = "https://example.com/",
         client_id = SPOTIPY_CLIENT_ID,
         client_secret = SPOTIPY_CLIENT_SECRET,
         show_dialog = True,
+        # Saves the authentication token for reuse.
         cache_path = "token.txt",
         # username = 'LIN',
     )
