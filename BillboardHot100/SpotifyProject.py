@@ -6,15 +6,19 @@ from spotipy.oauth2 import SpotifyOAuth
 SPOTIPY_CLIENT_ID = 'smt'
 SPOTIPY_CLIENT_SECRET = 'smt'
 
-sp = spotipy.Spotify(
-    auth_manager = SpotifyOAuth(
-        scope = "playlist-modify-private",
-        redirect_uri = "https://example.com/",
-        client_id = SPOTIPY_CLIENT_ID,
-        client_secret = SPOTIPY_CLIENT_SECRET,
-        show_dialog = True,
-        cache_path = "token.txt",
-        username= 'LIN',
-    )
-)
-user_id = sp.current_user()["id"]
+class SpotifyPlaylistCreator:
+
+    def __init__(self, client_id, client_secret, redirect_uri, scope, cache_path):
+        self.sp = spotipy.Spotify(
+            auth_manager = SpotifyOAuth (
+                client_id = client_id,
+                client_secret = client_secret,
+                redirect_uri = redirect_uri,
+                scope = scope,
+                cache_path = cache_path,
+                show_dialog= True
+            )
+        )
+
+        self.user_id = self.sp.current_user()["id"]
+        self.user_name = self.sp.current_user()["display_name"]
