@@ -22,3 +22,21 @@ class SpotifyPlaylistCreator:
 
         self.user_id = self.sp.current_user()["id"]
         self.user_name = self.sp.current_user()["display_name"]
+
+    def create_playlist(self, playlist_name, description):
+        return self.sp.user_playlist_create(
+            user = self.user_id,
+            name = playlist_name,
+            public = False,
+            description = description
+        )
+    
+    def search_song(self, song_name, year):
+        try:
+            result = self.sp.search(q = f"track:{song_name} year:{year}", type = "track")
+            return result["tracks"]["items"][0]["uri"]
+        except (IndexError, KeyError):
+            return f"{song_name} cannot be found in Spotify"
+    
+    def add_song_to_playlist(self, playlist_id, song_list):
+        return self.sp.playlist_add_items(playlist_id, song_list)
