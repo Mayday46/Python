@@ -12,18 +12,55 @@ class Solution:
         if not head:
             return None
 
-        ref = set()
-        current = head
-        dummy = ListNode(head.val)
-        dummyHead = dummy
-        ref.add(head.val)
-        current = current.next
+        # ref = set()
+        # current = head
+        # dummy = ListNode(head.val)
+        # dummyHead = dummy
+        # ref.add(head.val)
+        # current = current.next
         
         
-        while current:
-            if current.val not in ref:
-                ref.add(current.val)
-                dummy.next = ListNode(current.val)
-                dummy = dummy.next
-            current = current.next
-        return dummyHead
+        # while current:
+        #     if current.val not in ref:
+        #         ref.add(current.val)
+        #         dummy.next = ListNode(current.val)
+        #         dummy = dummy.next
+        #     current = current.next
+        # return dummyHead
+
+        # Two Pointer method
+        Initialize the Pointers:
+
+        # Set pointer1 to point to the head node of the linked list.
+        # Set pointer2 to point to the next node of the head (head.next).
+        # Iterate through the List:
+
+        # Use a while loop to iterate through the list until pointer2 reaches the end of the linked list (pointer2 is None).
+        # Check for Duplicate Values:
+
+        # Inside the loop, compare the values of pointer1 and pointer2:
+        # If pointer2.val == pointer1.val:
+        # Increment pointer2 to the next node (pointer2 = pointer2.next) to skip over the duplicate.
+        # Else:
+        # Set pointer1.next to pointer2 to update the next valid (non-duplicate) node.
+        # Move pointer1 to where pointer2 is (pointer1 = pointer2).
+        # Increment pointer2 to the next node (pointer2 = pointer2.next).
+        # Handle the End of the List:
+
+        # After the loop, ensure pointer1.next is set to None to terminate the list properly.
+        # Return the Modified Head:
+
+        # Return the head of the modified linked list.
+        pointer1 = head
+        pointer2 = head.next
+
+        while pointer2:
+            if pointer1.val == pointer2.val:
+                pointer2 = pointer2.next
+            else:
+                # We found unique
+                pointer1.next = pointer2
+                pointer1 = pointer2
+                pointer2 = pointer2.next
+        pointer1.next = None
+        return head
